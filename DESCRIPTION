@@ -12,3 +12,5 @@ Description: Interaction with 1Password CLI tool to list vault contents and down
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
+URL: https://github.com/jonlinca/onepass
+BugReports: https://github.com/jonlinca/onepass/issues
