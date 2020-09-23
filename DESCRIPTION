@@ -17,3 +17,5 @@ BugReports: https://github.com/jonlinca/onepass/issues
 Imports: 
     jsonlite
 RoxygenNote: 7.1.1
+Suggests: 
+    testthat

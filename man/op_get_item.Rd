@@ -11,7 +11,7 @@ op_get_item(ops, name, fields = "username,password")
 
 \item{name}{Specify an item by name or uuid. UUID is preferred for consistency.}
 
-\item{fields}{Optional. List of fields desired.}
+\item{fields}{Optional. List of fields desired. NULLable to get all contents.}
 }
 \value{
 A character vector
