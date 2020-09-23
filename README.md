@@ -48,7 +48,7 @@ ops <- setup_op(op_domain, op_email, op_masterpassword, op_secretkey)
 
 For new machines, you may also receive the following as well:
 
-    #> Warning: To reduce notifications of new devices, insert the following line into the 
+    #> To reduce notifications of new devices, insert the following line into the 
     #> Renviron file (usethis::edit_r_environ() or edit .Renviron):
     #>           OP_DEVICE = 1234567890abcdefghijklmnopqrstuvwxyz
 
