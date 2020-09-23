@@ -1,11 +1,14 @@
 Package: onepass
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Credential retrieval from 1Password
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Authors@R: 
+    person(given = "Jonathan",
+           family = "Lin",
+           role = c("aut", "cre"),
+           email = "jonlinca@users.noreply.github.com",
+           comment = c(ORCID = "0000-0001-8664-6846"))
+Description: Interaction with 1Password CLI tool to list vault contents and download credentials.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
