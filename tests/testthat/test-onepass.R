@@ -4,7 +4,7 @@ test_that("Initial 1Password, no sessions or incorrect passwords", {
   op_secretkey <- Sys.getenv('onepass_secretkey')
   op_masterpassword <- Sys.getenv('onepass_password')
 
-  expect_error(unlock_op(op_domain, op_email, '123'), 'New|Unauthorized') # Needs to handle testing for devices that don't have the sys environ set
+  expect_error(unlock_op(op_domain, op_email, '123'), 'new|Unauthorized') # Needs to handle testing for devices that don't have the sys environ set
   expect_error(setup_op(op_domain, op_email, op_masterpassword, "A1-B12345-C12345-D1234-E1234-F1234-12345"), 'invalid account')
 })
 

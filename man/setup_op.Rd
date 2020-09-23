@@ -25,7 +25,7 @@ setup_op(
 }
 \description{
 If the device does not have an environment variable, creates one for the
-session. This can be saved within the .REnviron file to reduce new device
+session. This can be saved within the .Renviron file to reduce new device
 alerts.
 }
 \details{

@@ -25,7 +25,7 @@ save_device <- function(response){
     Sys.setenv(OP_DEVICE = device_id)
   }
 
-  message(paste0("To reduce notifications of new devices, insert the following line into the REnviron file (usethis::edit_r_environ() or edit .REnviron):\n  OP_DEVICE = ", Sys.getenv('OP_DEVICE')))
+  message(paste0("To reduce notifications of new devices, insert the following line into the REnviron file (usethis::edit_r_environ() or edit .Renviron):\n  OP_DEVICE = ", Sys.getenv('OP_DEVICE')))
 
   return(device_id)
 }
@@ -85,7 +85,7 @@ check_response <- function(response){
 #' Initialize vault and device
 #'
 #' If the device does not have an environment variable, creates one for the
-#' session. This can be saved within the .REnviron file to reduce new device
+#' session. This can be saved within the .Renviron file to reduce new device
 #' alerts.
 #'
 #' Saves a token as an environment variable for the session as OP_SESSION_(subdomain)
@@ -122,6 +122,7 @@ setup_op <- function(domain, email, masterpassword = rstudioapi::askForPassword(
 #' @inheritParams setup_op
 #'
 #' @return 1Password session object, to be used for interacting with vault
+#' @export
 unlock_op <- function(domain, email, masterpassword = rstudioapi::askForPassword("Please enter your Master Password")){
   response <- get_token(domain, email, masterpassword)
 
