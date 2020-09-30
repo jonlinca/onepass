@@ -82,6 +82,16 @@ check_response <- function(response){
   }
 }
 
+new_ops <- function(token, domain, current_time = Sys.time()){
+  # Create stable class of ops token
+
+  structure(
+    list(token = token,
+         domain = domain,
+         created = Sys.time()),
+    class = 'ops')
+}
+
 #' Initialize vault and device
 #'
 #' If the device does not have an environment variable, creates one for the
@@ -110,7 +120,7 @@ setup_op <- function(domain, email, masterpassword = rstudioapi::askForPassword(
   # save_token(response, get_subdomain(domain))
   # save_domain(domain)
 
-  ops <- list(token = response, created = Sys.time(), domain = domain)
+  ops <- new_ops(response, domain)
 
   return(ops)
 }
@@ -134,7 +144,7 @@ unlock_op <- function(domain, email, masterpassword = rstudioapi::askForPassword
   # save_token(response, get_subdomain(domain))
   # save_domain(domain)
 
-  ops <- list(token = response, created = Sys.time(), domain = domain)
+  ops <- new_ops(response, domain)
 
   return(ops)
 }
