@@ -60,10 +60,11 @@ receive constant messages about logins from a new device.
 
 Once you have set up 1Password and connected to the vault, you can
 connect to 1Password by unlocking the vault. You will also need to do
-this if your session token expires after 30 minutes.
+this if your session token expires after 30 minutes. The email isn’t
+required.
 
 ``` r
-ops <- unlock_op(op_domain, op_email, op_masterpassword)
+ops <- unlock_op(op_domain, op_masterpassword)
 ```
 
 This `ops` object will contain three elements, the most important being
