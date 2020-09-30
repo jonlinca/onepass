@@ -71,7 +71,7 @@
 <a href="#onepass" class="anchor"></a>onepass</h1></div>
 <!-- badges: start -->
 <!-- badges: end -->
-<p>The <em>onepass</em> package provides an interface to 1Password Command Line Interface (CLI). Using this, you can query the list of credentials in your vault, as well as download usernames and passwords for them.</p>
+<p>The <strong>onepass</strong> package enables you to use R to interact with your 1Password vault. <strong>onepass</strong> provides an interface to the 1Password Command Line Interface (CLI), allowing you to query the list of credentials in your vault, and retrieve account usernames and passwords.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -85,21 +85,21 @@
 <div id="set-up" class="section level2">
 <h2 class="hasAnchor">
 <a href="#set-up" class="anchor"></a>Set up</h2>
-<p>Once the 1Password CLI is installed, you should be set. You will need your domain (*.1password.com), the email account, your master password, as well as your secret key.</p>
-<p>If this is a new machine, you will need to setup 1Password CLI with R. This will require both the master password and secret key:</p>
+<p>Once the 1Password CLI is installed, you will need your domain (*.1password.com), the email account, your master password, as well as your secret key.</p>
+<p>To setup 1Password CLI with R on a new machine, <code><a href="reference/setup_op.html">setup_op()</a></code> will require both the master password and secret key:</p>
 <div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">'onepass'</span>)
 
 <span class="no">ops</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/setup_op.html">setup_op</a></span>(<span class="no">op_domain</span>, <span class="no">op_email</span>, <span class="no">op_masterpassword</span>, <span class="no">op_secretkey</span>)</pre></div>
-<p>For new machines, you may also receive the following as well:</p>
+<p>Typically on a new machine, you may also receive the following as well:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">#&gt; To reduce notifications of new devices, insert the following line into the </span></span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="co">#&gt; Renviron file (usethis::edit_r_environ() or edit .Renviron):</span></span>
 <span id="cb4-3"><a href="#cb4-3"></a><span class="co">#&gt;           OP_DEVICE = 1234567890abcdefghijklmnopqrstuvwxyz</span></span></code></pre></div>
-<p>If you receive the above message, its highly recommended that you insert the unique <code>OP_DEVICE</code> into your .Renviron file - otherwise, you will receive constant messages about logins from a new device.</p>
+<p>It is highly recommended that you insert the unique <code>OP_DEVICE</code> into your .Renviron file - otherwise, you will receive constant messages about logins from a new device.</p>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
-<p>Once you have set up 1Password and connected to the vault, you can connect to 1Password by unlocking the vault. You will also need to do this if your session token expires after 30 minutes. The email isn’t required.</p>
+<p>Once you have set up 1Password and connected to the vault, you can connect to 1Password by unlocking the vault. You will also need to do this if your session token expires after 30 minutes. The email account isn’t required as it is implicit based upon your first setup.</p>
 <div class="sourceCode" id="cb5"><pre class="r"><span class="no">ops</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/unlock_op.html">unlock_op</a></span>(<span class="no">op_domain</span>, <span class="no">op_masterpassword</span>)</pre></div>
 <p>This <code>ops</code> object will contain three elements, the most important being the token. You can use this token and pass it through to see what vaults you have access to:</p>
 <div class="sourceCode" id="cb6"><pre class="r"><span class="fu"><a href="reference/op_list_vaults.html">op_list_vaults</a></span>(<span class="no">ops</span>)</pre></div>

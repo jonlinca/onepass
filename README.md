@@ -7,15 +7,16 @@
 
 <!-- badges: end -->
 
-The *onepass* package provides an interface to 1Password Command Line
-Interface (CLI). Using this, you can query the list of credentials in
-your vault, as well as download usernames and passwords for them.
+The **onepass** package enables you to use R to interact with your
+1Password vault. **onepass** provides an interface to the 1Password
+Command Line Interface (CLI), allowing you to query the list of
+credentials in your vault, and retrieve account usernames and passwords.
 
 ## Installation
 
-You will require the [1Password
+First off, ensure the [1Password
 CLI](https://1password.com/downloads/command-line/) installed on your
-computer.
+computer. You should test that it works from the command line as well.
 
 You can install the released version of onepass from
 [CRAN](https://CRAN.R-project.org) with:
@@ -33,12 +34,12 @@ devtools::install_github("jonlinca/onepass")
 
 ## Set up
 
-Once the 1Password CLI is installed, you should be set. You will need
-your domain (\*.1password.com), the email account, your master password,
-as well as your secret key.
+Once the 1Password CLI is installed, you will need your domain
+(\*.1password.com), the email account, your master password, as well as
+your secret key.
 
-If this is a new machine, you will need to setup 1Password CLI with R.
-This will require both the master password and secret key:
+To setup 1Password CLI with R on a new machine, `setup_op()` will
+require both the master password and secret key:
 
 ``` r
 library('onepass')
@@ -46,22 +47,22 @@ library('onepass')
 ops <- setup_op(op_domain, op_email, op_masterpassword, op_secretkey) 
 ```
 
-For new machines, you may also receive the following as well:
+Typically on a new machine, you may also receive the following as well:
 
     #> To reduce notifications of new devices, insert the following line into the 
     #> Renviron file (usethis::edit_r_environ() or edit .Renviron):
     #>           OP_DEVICE = 1234567890abcdefghijklmnopqrstuvwxyz
 
-If you receive the above message, its highly recommended that you insert
-the unique `OP_DEVICE` into your .Renviron file - otherwise, you will
-receive constant messages about logins from a new device.
+It is highly recommended that you insert the unique `OP_DEVICE` into
+your .Renviron file - otherwise, you will receive constant messages
+about logins from a new device.
 
 ## Usage
 
 Once you have set up 1Password and connected to the vault, you can
 connect to 1Password by unlocking the vault. You will also need to do
-this if your session token expires after 30 minutes. The email isn’t
-required.
+this if your session token expires after 30 minutes. The email account
+isn’t required as it is implicit based upon your first setup.
 
 ``` r
 ops <- unlock_op(op_domain, op_masterpassword)
