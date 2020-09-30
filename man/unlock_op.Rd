@@ -6,14 +6,11 @@
 \usage{
 unlock_op(
   domain,
-  email,
   masterpassword = rstudioapi::askForPassword("Please enter your Master Password")
 )
 }
 \arguments{
 \item{domain}{Full domain URL of your vault}
-
-\item{email}{Email address used on 1Password}
 
 \item{masterpassword}{Used to unlock the vault}
 }

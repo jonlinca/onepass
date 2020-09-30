@@ -43,10 +43,17 @@ current_domain <- function(){
 }
 
 
-get_token <- function(domain, email, masterpassword, secretkey = NULL){
+get_token <- function(domain, email = NULL, masterpassword, secretkey = NULL){
   subdomain <- get_subdomain(domain)
 
+  # Injection prevention
+  validateSecret(secretkey)
+  email <- shQuote(email)
+  subdomain <- shQuote(subdomain)
+  domain <- shQuote(domain)
+
   if (is.null(secretkey)){
+    ## Future - consider --account to work with multiple accounts
     response <- suppressWarnings(system2('op', args = c('signin', subdomain, '--raw'), input = masterpassword, stdout = TRUE, stderr = TRUE))[1]
 
     # Unique errors if secret key is not provided
@@ -67,7 +74,7 @@ get_token <- function(domain, email, masterpassword, secretkey = NULL){
     return(response)
   }
 
-  check_response(response)
+  check_response(response) # Check for more errors
 
   return(response)
 }
@@ -76,7 +83,7 @@ check_response <- function(response){
   if (grepl('Account not found', response)) {
     stop("This appears to be a new device. Please run setup_op() first.")
   } else if (grepl('session expired', response)) {
-    stop(paste0("Session explored. Reauthenticate with unlock_op()",response))
+    stop(paste0("Session expired. Reauthenticate with unlock_op()",response))
   } else if (grepl('ERROR', response)) {
     stop(paste0("Other error - ",response))
   }
@@ -133,8 +140,8 @@ setup_op <- function(domain, email, masterpassword = rstudioapi::askForPassword(
 #'
 #' @return 1Password session object, to be used for interacting with vault
 #' @export
-unlock_op <- function(domain, email, masterpassword = rstudioapi::askForPassword("Please enter your Master Password")){
-  response <- get_token(domain, email, masterpassword)
+unlock_op <- function(domain, masterpassword = rstudioapi::askForPassword("Please enter your Master Password")){
+  response <- get_token(domain, masterpassword = masterpassword)
 
   # If a device ID hasn't been set up, force an error and ask user to run setup
   if (grepl('OP_DEVICE', response)){
@@ -156,6 +163,7 @@ unlock_op <- function(domain, email, masterpassword = rstudioapi::askForPassword
 #' @return A data frame containing the vaults available in the session
 #' @export
 op_list_vaults <- function(ops){
+  stopifnot(class(ops) == 'ops')
   arg_session <- paste0('--session ', ops$token)
 
   response <- system2('op', args = c('list', 'vaults', arg_session), stdout = TRUE)
@@ -176,14 +184,16 @@ op_list_vaults <- function(ops){
 #' @return A data frame of password items with titles, usernames and uuids
 #' @export
 op_list_items <- function(ops, vault = NULL){
+  stopifnot(class(ops) == 'ops')
+
   arg_session <- paste0('--session ', ops$token)
   arg_vault <- ''
 
   if (!is.null(vault)){
-    arg_vault <- paste0('--vault ', vault)
+    arg_vault <- paste0('--vault ', shQuote(vault)) # Injection prevention
   }
 
-  response <- system2('op', args = c('list', 'items', arg_session, arg_vault), stdout = TRUE)
+  response <- system2('op', args = c('list', 'items', arg_session, arg_vault), stdout = TRUE) #attr(response, 'status')
   response <- paste0(response, collapse = '') # Collapse because the response comes over as multiple character vectors
   check_response(response)
 
@@ -202,6 +212,12 @@ op_list_items <- function(ops, vault = NULL){
 #' @return A character vector
 #' @export
 op_get_item <- function(ops, name, fields = 'username,password'){
+  stopifnot(class(ops) == 'ops')
+
+  # Injection prevention
+  name <- shQuote(name)
+  fields <- shQuote(fields)
+
   arg_session <- paste0('--session ', ops$token)
 
   if (is.null(fields)){
