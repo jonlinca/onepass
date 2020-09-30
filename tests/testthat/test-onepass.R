@@ -18,13 +18,16 @@ test_that("Authentication 1Password",{
   ops1 <- setup_op(op_domain, op_email, op_masterpassword, op_secretkey) # Pass
   device <- Sys.getenv('OP_DEVICE')
   expect_true(device != '')
-  expect_named(ops1, c('token', 'created', 'domain'))
+  expect_named(ops1, c('token', 'domain', 'created'))
+  expect_s3_class(ops1, 'ops')
 
   # Subsequent login
   expect_error(unlock_op(op_domain, op_email, '123'), 'Incorrect Master Password')
 
   ops2 <- unlock_op(op_domain, op_email, op_masterpassword) # Pass
-  expect_named(ops1, c('token', 'created', 'domain'))
+  expect_named(ops2, c('token', 'domain', 'created'))
+  expect_s3_class(ops2, 'ops')
+
 
   expect_false(ops1$token == ops2$token)
 })
