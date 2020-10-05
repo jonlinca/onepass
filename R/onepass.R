@@ -80,6 +80,10 @@ get_token <- function(domain, email = NULL, masterpassword, secretkey = NULL){
 }
 
 check_response <- function(response){
+  if (length(response) == 0){
+    stop("Zero length response")
+  }
+
   if (grepl('Account not found', response)) {
     stop("This appears to be a new device. Please run setup_op() first.")
   } else if (grepl('session expired', response)) {
@@ -166,7 +170,7 @@ op_list_vaults <- function(ops){
   stopifnot(class(ops) == 'ops')
   arg_session <- paste0('--session ', ops$token)
 
-  response <- system2('op', args = c('list', 'vaults', arg_session), stdout = TRUE)
+  response <- system2('op', args = c('list', 'vaults', arg_session), stdout = TRUE, stderr = TRUE)
   response <- paste0(response, collapse = '')
   check_response(response)
 
@@ -193,7 +197,7 @@ op_list_items <- function(ops, vault = NULL){
     arg_vault <- paste0('--vault ', shQuote(vault)) # Injection prevention
   }
 
-  response <- system2('op', args = c('list', 'items', arg_session, arg_vault), stdout = TRUE) #attr(response, 'status')
+  response <- system2('op', args = c('list', 'items', arg_session, arg_vault), stdout = TRUE, stderr = TRUE) #attr(response, 'status')
   response <- paste0(response, collapse = '') # Collapse because the response comes over as multiple character vectors
   check_response(response)
 
@@ -226,7 +230,7 @@ op_get_item <- function(ops, name, fields = 'username,password'){
     arg_fields <- paste0('--fields ', fields)
   }
 
-  response <- system2('op', args = c('get', 'item', name, arg_session, arg_fields), stdout = TRUE)
+  response <- system2('op', args = c('get', 'item', name, arg_session, arg_fields), stdout = TRUE, stderr = TRUE)
   check_response(response)
 
   parsed <- jsonlite::fromJSON(response, simplifyVector = TRUE)
