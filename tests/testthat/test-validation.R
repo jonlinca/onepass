@@ -1,3 +1,10 @@
+check_api <- function(){
+  key <- Sys.getenv('onepass_secretkey')
+  if (!nzchar(key)){
+    skip('API not available')
+  }
+}
+
 test_that("Secret Key Validation", {
   goodkey <- 'A1-B12345-C12345-D1234-E1234-F1234-12345'
   badkey <-'A1-B12345-C12345-D1234-E1234-F1234-1234'
@@ -9,6 +16,7 @@ test_that("Secret Key Validation", {
 })
 
 test_that("Injection 1", {
+  check_api()
   injection <- "foo&touch foo"
 
   op_domain <- Sys.getenv('onepass_domain')
@@ -41,6 +49,7 @@ test_that("Injection 1", {
 })
 
 test_that("Injection 2", {
+  check_api()
   injection <- "$(touch ~/foo)1234567890"
 
   op_domain <- Sys.getenv('onepass_domain')

@@ -1,4 +1,13 @@
+check_api <- function(){
+  key <- Sys.getenv('onepass_secretkey')
+  if (!nzchar(key)){
+    skip('API not available')
+  }
+}
+
 test_that("Initial 1Password, no sessions or incorrect passwords", {
+  check_api()
+
   op_domain <- Sys.getenv('onepass_domain')
   op_email <- Sys.getenv('onepass_email')
   op_secretkey <- Sys.getenv('onepass_secretkey')
@@ -9,6 +18,8 @@ test_that("Initial 1Password, no sessions or incorrect passwords", {
 })
 
 test_that("Authentication 1Password",{
+  check_api()
+
   op_domain <- Sys.getenv('onepass_domain')
   op_email <- Sys.getenv('onepass_email')
   op_secretkey <- Sys.getenv('onepass_secretkey')
@@ -44,6 +55,8 @@ test_that("List items",{
 })
 
 test_that("Retrieve item",{
+  check_api()
+
   op_domain <- Sys.getenv('onepass_domain')
   op_email <- Sys.getenv('onepass_email')
   op_secretkey <- Sys.getenv('onepass_secretkey')
