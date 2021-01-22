@@ -2,4 +2,4 @@
 * local macOS 11.1, R installation, R 4.0.3
 * local Windows 10.0.19041, R installation, R 4.0.3
 
-Installation requires local version of 1Password to be installed, along with 1Password CLI
+Installation requires local software to be installed, including the 1Password and 1Password CLI
