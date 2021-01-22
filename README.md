@@ -4,7 +4,6 @@
 # onepass
 
 <!-- badges: start -->
-
 <!-- badges: end -->
 
 The **onepass** package enables you to use R to interact with your
@@ -14,9 +13,11 @@ credentials in your vault, and retrieve account usernames and passwords.
 
 ## Installation
 
-First off, ensure the [1Password
-CLI](https://1password.com/downloads/command-line/) installed on your
-computer. You should test that it works from the command line as well.
+Before using this package, please install the [1Password
+CLI](https://1password.com/downloads/command-line/) on your computer.
+You can validate that the CLI works by checking the [Getting
+started](https://support.1password.com/command-line-getting-started/)
+instructions.
 
 You can install the released version of onepass from
 [CRAN](https://CRAN.R-project.org) with:
@@ -47,15 +48,15 @@ library('onepass')
 ops <- setup_op(op_domain, op_email, op_masterpassword, op_secretkey) 
 ```
 
-Typically on a new machine, you may also receive the following as well:
+Typically on a new machine, you may also receive the following message:
 
     #> To reduce notifications of new devices, insert the following line into the 
     #> Renviron file (usethis::edit_r_environ() or edit .Renviron):
     #>           OP_DEVICE = 1234567890abcdefghijklmnopqrstuvwxyz
 
 It is highly recommended that you insert the unique `OP_DEVICE` into
-your .Renviron file - otherwise, you will receive constant messages
-about logins from a new device.
+your .Renviron file - otherwise, you will receive constant email
+notifications about logins from a new device.
 
 ## Usage
 
