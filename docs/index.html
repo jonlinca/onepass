@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -50,7 +50,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/jonlinca/onepass/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -75,7 +75,7 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You will require the <a href="https://1password.com/downloads/command-line/">1Password CLI</a> installed on your computer.</p>
+<p>Before using this package, please install the <a href="https://1password.com/downloads/command-line/">1Password CLI</a> on your computer. You can validate that the CLI works by checking the <a href="https://support.1password.com/command-line-getting-started/">Getting started</a> instructions.</p>
 <p>You can install the released version of onepass from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"onepass"</span>)</pre></div>
 <p>And the development version from <a href="https://github.com/">GitHub</a> with:</p>
@@ -90,11 +90,11 @@
 <div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">'onepass'</span>)
 
 <span class="no">ops</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/setup_op.html">setup_op</a></span>(<span class="no">op_domain</span>, <span class="no">op_email</span>, <span class="no">op_masterpassword</span>, <span class="no">op_secretkey</span>)</pre></div>
-<p>Typically on a new machine, you may also receive the following as well:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">#&gt; To reduce notifications of new devices, insert the following line into the </span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="co">#&gt; Renviron file (usethis::edit_r_environ() or edit .Renviron):</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="co">#&gt;           OP_DEVICE = 1234567890abcdefghijklmnopqrstuvwxyz</span></span></code></pre></div>
-<p>It is highly recommended that you insert the unique <code>OP_DEVICE</code> into your .Renviron file - otherwise, you will receive constant messages about logins from a new device.</p>
+<p>Typically on a new machine, you may also receive the following message:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; To reduce notifications of new devices, insert the following line into the </span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Renviron file (usethis::edit_r_environ() or edit .Renviron):</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           OP_DEVICE = 1234567890abcdefghijklmnopqrstuvwxyz</span></span></code></pre></div>
+<p>It is highly recommended that you insert the unique <code>OP_DEVICE</code> into your .Renviron file - otherwise, you will receive constant email notifications about logins from a new device.</p>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
