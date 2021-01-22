@@ -43,6 +43,8 @@ test_that("Authentication 1Password",{
 })
 
 test_that("List items",{
+  check_api()
+
   op_domain <- Sys.getenv('onepass_domain')
   op_email <- Sys.getenv('onepass_email')
   op_secretkey <- Sys.getenv('onepass_secretkey')

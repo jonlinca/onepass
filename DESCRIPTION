@@ -1,6 +1,6 @@
 Package: onepass
 Type: Package
-Title: Credential retrieval from 1Password
+Title: 1password Credential Retrieval
 Version: 0.1.1
 Authors@R: 
     person(given = "Jonathan",
