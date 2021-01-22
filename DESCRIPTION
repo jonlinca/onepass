@@ -6,7 +6,7 @@ Authors@R:
     person(given = "Jonathan",
            family = "Lin",
            role = c("aut", "cre"),
-           email = "jonlinca@users.noreply.github.com",
+           email = "hello@jonlin.ca",
            comment = c(ORCID = "0000-0001-8664-6846"))
 Description: Interaction with 1Password CLI tool to list vault contents and download credentials.
 License: GPL-3
