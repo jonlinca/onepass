@@ -8,7 +8,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "hello@jonlin.ca",
            comment = c(ORCID = "0000-0001-8664-6846"))
-Description: Interaction with 1Password CLI tool to list vault contents and download credentials.
+Description: Interaction with 1Password via the command-line tool <https://1password.com/downloads/command-line/> to read vault contents and download credentials.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
