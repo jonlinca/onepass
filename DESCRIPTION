@@ -12,7 +12,8 @@ Description: Interaction with 1Password via the command-line tool <https://1pass
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-URL: https://github.com/jonlinca/onepass
+URL: https://jonlinca.github.io/onepass/, 
+  https://github.com/jonlinca/onepass
 BugReports: https://github.com/jonlinca/onepass/issues
 Imports: 
     jsonlite
