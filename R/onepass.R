@@ -182,13 +182,18 @@ op_list_vaults <- function(ops){
 #'
 #' @param vault Optional. Can specify a vault by name or uuid to see passwords
 #'   within a specific vault
+#' @param name Optional. A word or regex expression to search for items in vault(s).
 #'
 #' @inheritParams op_list_vaults
 #'
 #' @return A data frame of password items with titles, usernames and uuids
 #' @export
-op_list_items <- function(ops, vault = NULL){
+op_list_items <- function(ops, vault = NULL, name = NULL){
   stopifnot(class(ops) == 'ops')
+
+  if (!is.null(name) & !is.character(name)){
+    stop("name is not a searchable text")
+  }
 
   arg_session <- paste0('--session ', ops$token)
   arg_vault <- ''
@@ -203,6 +208,12 @@ op_list_items <- function(ops, vault = NULL){
 
   parsed <- jsonlite::fromJSON(response, simplifyVector = TRUE)
   parsed <- data.frame(title = parsed$overview$title, username = parsed$overview$ainfo, uuid = parsed$uuid)
+
+  # Search for a single term if available
+  if (!is.null(name)) {
+    parsed <- parsed[grepl(name, parsed$title, ignore.case = TRUE),]
+  }
+
   return(parsed)
 }
 

@@ -26,20 +26,13 @@ You can install the released version of onepass from
 install.packages("onepass")
 ```
 
-And the development version from [GitHub](https://github.com/) with:
-
-``` r
-# install.packages("devtools")
-devtools::install_github("jonlinca/onepass")
-```
-
 ## Set up
 
 Once the 1Password CLI is installed, you will need your domain
 (\*.1password.com), the email account, your master password, as well as
 your secret key.
 
-To setup 1Password CLI with R on a new machine, `setup_op()` will
+To integrate 1Password CLI with R on a new machine, `setup_op()` will
 require both the master password and secret key:
 
 ``` r
@@ -83,6 +76,7 @@ available:
 ``` r
 op_list_items(ops) # All vaults
 op_list_items(ops, 'Private') # Just the contents in the private vault
+op_list_items(ops, name = 'westjet') # Search for any items with a specific name in it
 ```
 
 And most importantly, you can retrieve the username and password for any

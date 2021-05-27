@@ -4,13 +4,15 @@
 \alias{op_list_items}
 \title{List items}
 \usage{
-op_list_items(ops, vault = NULL)
+op_list_items(ops, vault = NULL, name = NULL)
 }
 \arguments{
 \item{ops}{1Password Session object, created from setup_op() or unlock_op()}
 
 \item{vault}{Optional. Can specify a vault by name or uuid to see passwords
 within a specific vault}
+
+\item{name}{Optional. A word or regex expression to search for items in vault(s).}
 }
 \value{
 A data frame of password items with titles, usernames and uuids

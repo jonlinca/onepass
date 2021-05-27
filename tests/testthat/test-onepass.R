@@ -56,6 +56,22 @@ test_that("List items",{
   expect_true(nrow(op_list_items(ops, 'Private')) > 0)
 })
 
+test_that("List items - Singular",{
+  check_api()
+
+  op_domain <- Sys.getenv('onepass_domain')
+  op_email <- Sys.getenv('onepass_email')
+  op_secretkey <- Sys.getenv('onepass_secretkey')
+  op_masterpassword <- Sys.getenv('onepass_password')
+
+  searchterm <- 'tech'
+
+  ops <- setup_op(op_domain, op_email, op_masterpassword, op_secretkey) # Pass
+
+  expect_true(nrow(op_list_items(ops, 'Shared (Everyone)', name = searchterm)) > 0)
+})
+
+
 test_that("Retrieve item",{
   check_api()
 
