@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">onepass</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
       </span>
     </div>
 
@@ -117,7 +117,7 @@
     <p>List items</p>
     </div>
 
-    <pre class="usage"><span class='fu'>op_list_items</span>(<span class='no'>ops</span>, <span class='kw'>vault</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>op_list_items</span><span class='op'>(</span><span class='va'>ops</span>, vault <span class='op'>=</span> <span class='cn'>NULL</span>, name <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -130,6 +130,10 @@
       <th>vault</th>
       <td><p>Optional. Can specify a vault by name or uuid to see passwords
 within a specific vault</p></td>
+    </tr>
+    <tr>
+      <th>name</th>
+      <td><p>Optional. A word or regex expression to search for items in vault(s).</p></td>
     </tr>
     </table>
 
@@ -152,7 +156,7 @@ within a specific vault</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
